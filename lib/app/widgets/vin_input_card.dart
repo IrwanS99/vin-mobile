@@ -14,12 +14,19 @@ class VinInputCard extends GetView<HomeController> {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppColors.darkNavy,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: AppColors.softBlue,
+          color: AppColors.softBlue.withValues(alpha: 0.5),
           width: 1,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkNavy.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +36,7 @@ class VinInputCard extends GetView<HomeController> {
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: AppColors.softBlue,
+              color: AppColors.darkNavy,
             ),
           ),
           const SizedBox(height: 4),
@@ -38,16 +45,16 @@ class VinInputCard extends GetView<HomeController> {
             style: GoogleFonts.poppins(
               fontSize: 12,
               fontWeight: FontWeight.w400,
-              color: AppColors.softBlue.withValues(alpha: 0.7),
+              color: AppColors.darkNavy.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 16),
           Container(
             decoration: BoxDecoration(
-              color: AppColors.darkNavy,
+              color: AppColors.softBlue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
-                color: AppColors.softBlue,
+                color: AppColors.softBlue.withValues(alpha: 0.3),
                 width: 1,
               ),
             ),
@@ -56,7 +63,7 @@ class VinInputCard extends GetView<HomeController> {
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: AppColors.softBlue,
+                color: AppColors.darkNavy,
                 letterSpacing: 2,
               ),
               textCapitalization: TextCapitalization.characters,
@@ -70,21 +77,21 @@ class VinInputCard extends GetView<HomeController> {
                 hintStyle: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.softBlue.withValues(alpha: 0.5),
+                  color: AppColors.darkNavy.withValues(alpha: 0.4),
                   letterSpacing: 2,
                 ),
                 suffixIcon: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
+                    Icon(
                       FontAwesomeIcons.check,
-                      color: AppColors.softBlue,
+                      color: AppColors.royalBlue,
                       size: 16,
                     ),
                     const SizedBox(width: 12),
-                    const Icon(
+                    Icon(
                       FontAwesomeIcons.camera,
-                      color: AppColors.softBlue,
+                      color: AppColors.darkNavy.withValues(alpha: 0.6),
                       size: 16,
                     ),
                     const SizedBox(width: 16),
@@ -97,7 +104,7 @@ class VinInputCard extends GetView<HomeController> {
           Align(
             alignment: Alignment.centerRight,
             child: Obx(() {
-              final length = controller.vinController.text.length;
+              final length = controller.vinLength.value;
               return Text(
                 '$length / 17',
                 style: GoogleFonts.poppins(
@@ -105,7 +112,7 @@ class VinInputCard extends GetView<HomeController> {
                   fontWeight: FontWeight.w400,
                   color: length == 17
                       ? AppColors.royalBlue
-                      : AppColors.softBlue.withValues(alpha: 0.7),
+                      : AppColors.darkNavy.withValues(alpha: 0.5),
                 ),
               );
             }),
@@ -120,7 +127,7 @@ class VinInputCard extends GetView<HomeController> {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
                   color: controller.isButtonPressed.value
-                      ? AppColors.softBlue
+                      ? AppColors.darkNavy
                       : AppColors.royalBlue,
                   borderRadius: BorderRadius.circular(18),
                 ),
@@ -130,7 +137,7 @@ class VinInputCard extends GetView<HomeController> {
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.darkNavy,
+                      color: Colors.white,
                     ),
                   ),
                 ),

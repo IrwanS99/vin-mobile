@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkNavy,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: FadeTransition(
           opacity: const AlwaysStoppedAnimation(1.0),
@@ -56,7 +56,7 @@ class HomeView extends GetView<HomeController> {
           ),
           child: const Icon(
             FontAwesomeIcons.carSide,
-            color: AppColors.darkNavy,
+            color: Colors.white,
             size: 28,
           ),
         ),
@@ -65,14 +65,14 @@ class HomeView extends GetView<HomeController> {
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: AppColors.softBlue,
+            color: AppColors.darkNavy,
           ),
         ),
         Container(
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppColors.darkNavy,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: AppColors.softBlue,
@@ -81,7 +81,7 @@ class HomeView extends GetView<HomeController> {
           ),
           child: const Icon(
             FontAwesomeIcons.bell,
-            color: AppColors.softBlue,
+            color: AppColors.darkNavy,
             size: 20,
           ),
         ),
@@ -98,7 +98,7 @@ class HomeView extends GetView<HomeController> {
           style: GoogleFonts.poppins(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: AppColors.softBlue,
+            color: AppColors.darkNavy,
           ),
         ),
         const SizedBox(height: 4),
@@ -107,7 +107,7 @@ class HomeView extends GetView<HomeController> {
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            color: AppColors.softBlue.withValues(alpha: 0.7),
+            color: AppColors.darkNavy.withValues(alpha: 0.6),
           ),
         ),
       ],
@@ -126,7 +126,7 @@ class HomeView extends GetView<HomeController> {
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: AppColors.softBlue,
+                color: AppColors.darkNavy,
               ),
             ),
             Text(
@@ -162,27 +162,16 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _buildFeatureCards() {
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          child: FeatureCard(
-            icon: FontAwesomeIcons.hashtag,
-            text: '17 Characters',
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: FeatureCard(
-            icon: FontAwesomeIcons.globe,
-            text: 'Global Database',
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: FeatureCard(
-            icon: FontAwesomeIcons.bolt,
-            text: 'Instant Results',
-          ),
+        Row(
+          children: [
+            Expanded(child: FeatureCard(icon: FontAwesomeIcons.hashtag, text: '17 Characters')),
+            const SizedBox(width: 12),
+            Expanded(child: FeatureCard(icon: FontAwesomeIcons.globe, text: 'Global Database')),
+            const SizedBox(width: 12),
+            Expanded(child: FeatureCard(icon: FontAwesomeIcons.bolt, text: 'Instant Results')),
+          ],
         ),
       ],
     );

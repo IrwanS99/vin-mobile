@@ -12,13 +12,20 @@ class AppBottomNav extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.darkNavy,
+        color: Colors.white,
         border: Border(
           top: BorderSide(
-            color: AppColors.softBlue,
+            color: AppColors.softBlue.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkNavy.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, -4),
+          ),
+        ],
       ),
       child: SafeArea(
         child: Padding(
@@ -59,7 +66,7 @@ class AppBottomNav extends GetView<HomeController> {
           children: [
             Icon(
               icon,
-              color: isActive ? AppColors.darkNavy : AppColors.softBlue,
+              color: isActive ? Colors.white : AppColors.darkNavy.withValues(alpha: 0.6),
               size: 20,
             ),
             if (isActive) ...[
@@ -69,7 +76,7 @@ class AppBottomNav extends GetView<HomeController> {
                 style: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.darkNavy,
+                  color: Colors.white,
                 ),
               ),
             ],

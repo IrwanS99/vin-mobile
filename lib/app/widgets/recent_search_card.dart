@@ -22,12 +22,19 @@ class RecentSearchCard extends StatelessWidget {
       width: 200,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.darkNavy,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: AppColors.softBlue,
+          color: AppColors.softBlue.withValues(alpha: 0.3),
           width: 1,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkNavy.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +49,7 @@ class RecentSearchCard extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.softBlue,
+                    color: AppColors.darkNavy,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -62,7 +69,7 @@ class RecentSearchCard extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.darkNavy,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -73,7 +80,7 @@ class RecentSearchCard extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 12,
               fontWeight: FontWeight.w400,
-              color: AppColors.softBlue.withValues(alpha: 0.7),
+              color: AppColors.darkNavy.withValues(alpha: 0.6),
             ),
           ),
           Text(
@@ -81,7 +88,7 @@ class RecentSearchCard extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 10,
               fontWeight: FontWeight.w400,
-              color: AppColors.softBlue.withValues(alpha: 0.5),
+              color: AppColors.darkNavy.withValues(alpha: 0.4),
             ),
           ),
         ],

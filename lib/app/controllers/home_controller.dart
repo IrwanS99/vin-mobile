@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   final vinController = TextEditingController();
   final currentIndex = 0.obs;
   final isButtonPressed = false.obs;
+  final vinLength = 0.obs;
 
   final dummyRecentSearches = <Map<String, dynamic>>[
     {
@@ -26,6 +27,10 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     vinController.text = 'MHFK39BT8E2017270';
+    vinLength.value = vinController.text.length;
+    vinController.addListener(() {
+      vinLength.value = vinController.text.length;
+    });
   }
 
   void changePage(int index) {
@@ -40,7 +45,7 @@ class HomeController extends GetxController {
         'VIN Decoded',
         'Processing: ${vinController.text}',
         backgroundColor: AppColors.royalBlue,
-        colorText: AppColors.darkNavy,
+        colorText: Colors.white,
         snackPosition: SnackPosition.TOP,
       );
     });
