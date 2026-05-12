@@ -54,6 +54,10 @@ class AppBottomNav extends GetView<HomeController> {
       onTap: () {
         if (index == 1) {
           Get.toNamed(AppRoutes.history);
+        } else if (index == 2) {
+          Get.toNamed(AppRoutes.favorites);
+        } else if (index == 3) {
+          Get.toNamed(AppRoutes.profile);
         } else {
           controller.changePage(index);
         }

@@ -38,84 +38,97 @@ class DetailBottomAction extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: GestureDetector(
+              child: _PressButton(
                 onTap: onSave,
-                child: Container(
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: AppColors.royalBlue,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.royalBlue.withValues(alpha: 0.3),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        FontAwesomeIcons.heart,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        'Save',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+                child: _ActionButton(
+                  icon: FontAwesomeIcons.heart,
+                  label: 'Save',
                 ),
               ),
             ),
             const SizedBox(width: 16),
             Expanded(
-              child: GestureDetector(
+              child: _PressButton(
                 onTap: onShare,
-                child: Container(
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: AppColors.royalBlue,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.royalBlue.withValues(alpha: 0.3),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        FontAwesomeIcons.shareNodes,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        'Share',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+                child: _ActionButton(
+                  icon: FontAwesomeIcons.shareNodes,
+                  label: 'Share',
                 ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _ActionButton({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      decoration: BoxDecoration(
+        color: AppColors.royalBlue,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkNavy.withValues(alpha: 0.05),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: Colors.white, size: 20),
+          const SizedBox(width: 10),
+          Text(
+            label,
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PressButton extends StatefulWidget {
+  final Widget child;
+  final VoidCallback onTap;
+
+  const _PressButton({required this.child, required this.onTap});
+
+  @override
+  State<_PressButton> createState() => _PressButtonState();
+}
+
+class _PressButtonState extends State<_PressButton> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) {
+        setState(() => _pressed = false);
+        widget.onTap();
+      },
+      onTapCancel: () => setState(() => _pressed = false),
+      child: AnimatedScale(
+        scale: _pressed ? 0.96 : 1.0,
+        duration: const Duration(milliseconds: 100),
+        child: widget.child,
       ),
     );
   }

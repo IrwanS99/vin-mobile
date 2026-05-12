@@ -12,11 +12,60 @@ class DetailController extends GetxController {
     {'icon': FontAwesomeIcons.car, 'label': 'Body Type', 'value': 'Sedan'},
     {'icon': FontAwesomeIcons.gasPump, 'label': 'Fuel Type', 'value': 'Petrol'},
     {'icon': FontAwesomeIcons.gears, 'label': 'Drive Type', 'value': 'FWD'},
-    {'icon': FontAwesomeIcons.leftRight, 'label': 'Transmission', 'value': 'CVT'},
+    {
+      'icon': FontAwesomeIcons.leftRight,
+      'label': 'Transmission',
+      'value': 'CVT',
+    },
     {'icon': FontAwesomeIcons.doorOpen, 'label': 'Doors', 'value': '4'},
     {'icon': FontAwesomeIcons.chair, 'label': 'Seats', 'value': '5'},
-    {'icon': FontAwesomeIcons.palette, 'label': 'Color', 'value': 'Lunar Silver Metallic'},
-    {'icon': FontAwesomeIcons.shapes, 'label': 'Vehicle Type', 'value': 'Passenger Car'},
+    {
+      'icon': FontAwesomeIcons.palette,
+      'label': 'Color',
+      'value': 'Lunar Silver Metallic',
+    },
+    {
+      'icon': FontAwesomeIcons.shapes,
+      'label': 'Vehicle Type',
+      'value': 'Passenger Car',
+    },
+  ];
+
+  final List<Map<String, dynamic>> specsSections = [
+    {
+      'title': 'Engine',
+      'rows': [
+        {'label': 'Engine', 'value': '2.0L 4-Cylinder TwinPower Turbo'},
+        {'label': 'Horsepower', 'value': '240 HP'},
+        {'label': 'Cylinders', 'value': '4'},
+      ],
+    },
+    {
+      'title': 'Dimensions',
+      'rows': [
+        {'label': 'Doors', 'value': '4'},
+        {'label': 'Seats', 'value': '5'},
+        {'label': 'Body Class', 'value': 'Sedan'},
+      ],
+    },
+    {
+      'title': 'Drivetrain',
+      'rows': [
+        {'label': 'Transmission', 'value': 'Automatic'},
+        {'label': 'Drive Type', 'value': 'RWD'},
+        {'label': 'Fuel Type', 'value': 'Petrol'},
+      ],
+    },
+    {
+      'title': 'Identity',
+      'rows': [
+        {'label': 'Make', 'value': 'BMW'},
+        {'label': 'Model', 'value': '3 Series'},
+        {'label': 'Year', 'value': '2013'},
+        {'label': 'Manufacturer', 'value': 'Bayerische Motoren Werke AG'},
+        {'label': 'Plant City', 'value': 'Munich, Germany'},
+      ],
+    },
   ];
 
   void changeTab(int index) {
