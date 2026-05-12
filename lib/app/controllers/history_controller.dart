@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
+import '../routes/app_routes.dart';
 
 class HistoryController extends GetxController {
   final currentIndex = 1.obs;
@@ -51,12 +52,16 @@ class HistoryController extends GetxController {
   }
 
   void onTapHistoryItem(int index) {
-    Get.snackbar(
-      'Open Detail',
-      'Viewing: ${historyList[index]['title']}',
-      backgroundColor: AppColors.royalBlue,
-      colorText: Colors.white,
-      snackPosition: SnackPosition.TOP,
+    final item = historyList[index];
+    Get.toNamed(
+      AppRoutes.detail,
+      arguments: {
+        'title': item['title'],
+        'vin': item['vin'],
+        'year': item['year'],
+        'country': 'United States',
+        'vehicleType': 'Passenger Car',
+      },
     );
   }
 }
