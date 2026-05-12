@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../controllers/home_controller.dart';
+import '../controllers/history_controller.dart';
 import '../theme/app_colors.dart';
-import '../routes/app_routes.dart';
 
-class AppBottomNav extends GetView<HomeController> {
-  const AppBottomNav({super.key});
+class HistoryBottomNav extends GetView<HistoryController> {
+  const HistoryBottomNav({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +35,8 @@ class AppBottomNav extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(0, FontAwesomeIcons.qrcode, 'Decode'),
-                _buildNavItem(1, FontAwesomeIcons.clockRotateLeft, 'History'),
-                _buildNavItem(2, FontAwesomeIcons.heart, 'Favorites'),
+                _buildNavItem(1, FontAwesomeIcons.clockRotateLeft, 'History', isActive: true),
+                _buildNavItem(2, FontAwesomeIcons.star, 'Favorites'),
                 _buildNavItem(3, FontAwesomeIcons.user, 'Profile'),
               ],
             );
@@ -47,25 +46,19 @@ class AppBottomNav extends GetView<HomeController> {
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String label) {
-    final isActive = controller.currentIndex.value == index;
+  Widget _buildNavItem(int index, IconData icon, String label, {bool isActive = false}) {
+    final isCurrentActive = controller.currentIndex.value == index || isActive;
 
     return GestureDetector(
-      onTap: () {
-        if (index == 1) {
-          Get.toNamed(AppRoutes.history);
-        } else {
-          controller.changePage(index);
-        }
-      },
+      onTap: () => controller.changePage(index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.symmetric(
-          horizontal: isActive ? 20 : 12,
+          horizontal: isCurrentActive ? 20 : 12,
           vertical: 10,
         ),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.softBlue.withValues(alpha: 0.15) : Colors.transparent,
+          color: isCurrentActive ? AppColors.softBlue.withValues(alpha: 0.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -73,10 +66,10 @@ class AppBottomNav extends GetView<HomeController> {
           children: [
             Icon(
               icon,
-              color: isActive ? AppColors.royalBlue : AppColors.darkNavy.withValues(alpha: 0.4),
+              color: isCurrentActive ? AppColors.royalBlue : AppColors.darkNavy.withValues(alpha: 0.4),
               size: 20,
             ),
-            if (isActive) ...[
+            if (isCurrentActive) ...[
               const SizedBox(width: 8),
               Text(
                 label,
