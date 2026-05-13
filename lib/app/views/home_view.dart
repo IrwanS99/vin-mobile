@@ -39,7 +39,7 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-      bottomNavigationBar: const AppBottomNav(),
+      bottomNavigationBar: const AppBottomNav(activeIndex: 0),
     );
   }
 
@@ -74,10 +74,7 @@ class HomeView extends GetView<HomeController> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: AppColors.softBlue,
-              width: 1,
-            ),
+            border: Border.all(color: AppColors.softBlue, width: 1),
           ),
           child: const Icon(
             FontAwesomeIcons.bell,
@@ -166,11 +163,26 @@ class HomeView extends GetView<HomeController> {
       children: [
         Row(
           children: [
-            Expanded(child: FeatureCard(icon: FontAwesomeIcons.hashtag, text: '17 Characters')),
+            Expanded(
+              child: FeatureCard(
+                icon: FontAwesomeIcons.hashtag,
+                text: '17 Characters',
+              ),
+            ),
             const SizedBox(width: 12),
-            Expanded(child: FeatureCard(icon: FontAwesomeIcons.globe, text: 'Global Database')),
+            Expanded(
+              child: FeatureCard(
+                icon: FontAwesomeIcons.globe,
+                text: 'Global Database',
+              ),
+            ),
             const SizedBox(width: 12),
-            Expanded(child: FeatureCard(icon: FontAwesomeIcons.bolt, text: 'Instant Results')),
+            Expanded(
+              child: FeatureCard(
+                icon: FontAwesomeIcons.bolt,
+                text: 'Instant Results',
+              ),
+            ),
           ],
         ),
       ],

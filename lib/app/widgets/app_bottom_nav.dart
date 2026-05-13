@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../controllers/home_controller.dart';
 import '../theme/app_colors.dart';
 import '../routes/app_routes.dart';
 
-class AppBottomNav extends GetView<HomeController> {
-  const AppBottomNav({super.key});
+class AppBottomNav extends StatelessWidget {
+  final int activeIndex;
+
+  const AppBottomNav({super.key, required this.activeIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -31,35 +32,34 @@ class AppBottomNav extends GetView<HomeController> {
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Obx(() {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildNavItem(0, FontAwesomeIcons.house, 'Home'),
-                _buildNavItem(1, FontAwesomeIcons.clockRotateLeft, 'History'),
-                _buildNavItem(2, FontAwesomeIcons.heart, 'Favorites'),
-                _buildNavItem(3, FontAwesomeIcons.user, 'Profile'),
-              ],
-            );
-          }),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(0, FontAwesomeIcons.house, 'Home'),
+              _buildNavItem(1, FontAwesomeIcons.clockRotateLeft, 'History'),
+              _buildNavItem(2, FontAwesomeIcons.heart, 'Favorites'),
+              _buildNavItem(3, FontAwesomeIcons.user, 'Profile'),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildNavItem(int index, IconData icon, String label) {
-    final isActive = controller.currentIndex.value == index;
+    final isActive = activeIndex == index;
 
     return GestureDetector(
       onTap: () {
+        if (isActive) return;
         if (index == 0) {
-          Get.offNamed(AppRoutes.home);
+          Get.offAllNamed(AppRoutes.home);
         } else if (index == 1) {
-          Get.toNamed(AppRoutes.history);
+          Get.offNamed(AppRoutes.history);
         } else if (index == 2) {
-          Get.toNamed(AppRoutes.favorites);
+          Get.offNamed(AppRoutes.favorites);
         } else if (index == 3) {
-          Get.toNamed(AppRoutes.profile);
+          Get.offNamed(AppRoutes.profile);
         }
       },
       child: AnimatedContainer(
@@ -69,7 +69,9 @@ class AppBottomNav extends GetView<HomeController> {
           vertical: 10,
         ),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.softBlue.withValues(alpha: 0.15) : Colors.transparent,
+          color: isActive
+              ? AppColors.softBlue.withValues(alpha: 0.15)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -77,7 +79,9 @@ class AppBottomNav extends GetView<HomeController> {
           children: [
             Icon(
               icon,
-              color: isActive ? AppColors.royalBlue : AppColors.darkNavy.withValues(alpha: 0.4),
+              color: isActive
+                  ? AppColors.royalBlue
+                  : AppColors.darkNavy.withValues(alpha: 0.4),
               size: 20,
             ),
             if (isActive) ...[

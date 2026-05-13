@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../controllers/history_controller.dart';
 import '../controllers/home_controller.dart';
+import '../routes/app_routes.dart';
 import '../theme/app_colors.dart';
 import '../widgets/history_card.dart';
 import '../widgets/clear_all_button.dart';
@@ -24,16 +25,12 @@ class HistoryView extends GetView<HistoryController> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   children: [
-                    Expanded(
-                      child: _buildHistoryList(),
-                    ),
+                    Expanded(child: _buildHistoryList()),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
-                          ClearAllButton(),
-                        ],
+                        children: const [ClearAllButton()],
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -142,17 +139,36 @@ class HistoryView extends GetView<HistoryController> {
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Obx(() {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _buildNavItem(0, FontAwesomeIcons.qrcode, 'Decode', homeController),
-                    _buildNavItem(1, FontAwesomeIcons.clockRotateLeft, 'History', homeController, isActive: true),
-                    _buildNavItem(2, FontAwesomeIcons.star, 'Favorites', homeController),
-                    _buildNavItem(3, FontAwesomeIcons.user, 'Profile', homeController),
-                  ],
-                );
-              }),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildNavItem(
+                    0,
+                    FontAwesomeIcons.qrcode,
+                    'Decode',
+                    homeController,
+                  ),
+                  _buildNavItem(
+                    1,
+                    FontAwesomeIcons.clockRotateLeft,
+                    'History',
+                    homeController,
+                    isActive: true,
+                  ),
+                  _buildNavItem(
+                    2,
+                    FontAwesomeIcons.star,
+                    'Favorites',
+                    homeController,
+                  ),
+                  _buildNavItem(
+                    3,
+                    FontAwesomeIcons.user,
+                    'Profile',
+                    homeController,
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -160,15 +176,26 @@ class HistoryView extends GetView<HistoryController> {
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String label, HomeController homeController, {bool isActive = false}) {
-    final isCurrentActive = homeController.currentIndex.value == index || isActive;
+  Widget _buildNavItem(
+    int index,
+    IconData icon,
+    String label,
+    HomeController homeController, {
+    bool isActive = false,
+  }) {
+    final isCurrentActive = isActive;
 
     return GestureDetector(
       onTap: () {
-        homeController.changePage(index);
+        homeController.currentIndex.value = index;
         if (index == 0) {
-          Get.back();
+          Get.offAllNamed(AppRoutes.home);
+        } else if (index == 2) {
+          Get.offNamed(AppRoutes.favorites);
+        } else if (index == 3) {
+          Get.offNamed(AppRoutes.profile);
         }
+        // index == 1 (History): already on this page, do nothing
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -177,7 +204,9 @@ class HistoryView extends GetView<HistoryController> {
           vertical: 10,
         ),
         decoration: BoxDecoration(
-          color: isCurrentActive ? AppColors.softBlue.withValues(alpha: 0.15) : Colors.transparent,
+          color: isCurrentActive
+              ? AppColors.softBlue.withValues(alpha: 0.15)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -185,7 +214,9 @@ class HistoryView extends GetView<HistoryController> {
           children: [
             Icon(
               icon,
-              color: isCurrentActive ? AppColors.royalBlue : AppColors.darkNavy.withValues(alpha: 0.4),
+              color: isCurrentActive
+                  ? AppColors.royalBlue
+                  : AppColors.darkNavy.withValues(alpha: 0.4),
               size: 20,
             ),
             if (isCurrentActive) ...[

@@ -43,7 +43,7 @@ class ProfileView extends GetView<ProfileController> {
           ),
         ),
       ),
-      bottomNavigationBar: const AppBottomNav(),
+      bottomNavigationBar: const AppBottomNav(activeIndex: 3),
     );
   }
 
@@ -194,14 +194,16 @@ class ProfileView extends GetView<ProfileController> {
               onTap: controller.onChangePassword,
             ),
             _buildDivider(),
-            Obx(() => ProfileMenuItem(
-              icon: FontAwesomeIcons.bell,
-              title: 'Notifications',
-              showChevron: false,
-              showSwitch: true,
-              switchValue: controller.notificationsEnabled.value,
-              onSwitchChanged: controller.toggleNotifications,
-            )),
+            Obx(
+              () => ProfileMenuItem(
+                icon: FontAwesomeIcons.bell,
+                title: 'Notifications',
+                showChevron: false,
+                showSwitch: true,
+                switchValue: controller.notificationsEnabled.value,
+                onSwitchChanged: controller.toggleNotifications,
+              ),
+            ),
           ],
         ),
       ],

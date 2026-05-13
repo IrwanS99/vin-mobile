@@ -34,7 +34,7 @@ class FavoritesView extends GetView<FavoritesController> {
           ),
         ),
       ),
-      bottomNavigationBar: const AppBottomNav(),
+      bottomNavigationBar: const AppBottomNav(activeIndex: 2),
     );
   }
 
@@ -146,7 +146,8 @@ class FavoritesView extends GetView<FavoritesController> {
               country: vehicle['country'] as String,
               type: vehicle['type'] as String,
               onTap: () => controller.onVehicleTap(vehicle['id'] as String),
-              onFavoriteTap: () => controller.removeFavorite(vehicle['id'] as String),
+              onFavoriteTap: () =>
+                  controller.removeFavorite(vehicle['id'] as String),
             ),
           );
         }).toList(),
@@ -189,10 +190,7 @@ class FavoritesView extends GetView<FavoritesController> {
           GestureDetector(
             onTap: controller.onDecodeVin,
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 36,
-                vertical: 18,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
               decoration: BoxDecoration(
                 color: AppColors.royalBlue,
                 borderRadius: BorderRadius.circular(18),
