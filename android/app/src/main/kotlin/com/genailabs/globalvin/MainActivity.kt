@@ -1,4 +1,4 @@
-package com.example.vin_mobile
+package com.genailabs.globalvin
 
 import io.flutter.embedding.android.FlutterActivity
 

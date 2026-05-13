@@ -35,7 +35,7 @@ class AppBottomNav extends GetView<HomeController> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(0, FontAwesomeIcons.qrcode, 'Decode'),
+                _buildNavItem(0, FontAwesomeIcons.house, 'Home'),
                 _buildNavItem(1, FontAwesomeIcons.clockRotateLeft, 'History'),
                 _buildNavItem(2, FontAwesomeIcons.heart, 'Favorites'),
                 _buildNavItem(3, FontAwesomeIcons.user, 'Profile'),
@@ -52,14 +52,14 @@ class AppBottomNav extends GetView<HomeController> {
 
     return GestureDetector(
       onTap: () {
-        if (index == 1) {
+        if (index == 0) {
+          Get.offNamed(AppRoutes.home);
+        } else if (index == 1) {
           Get.toNamed(AppRoutes.history);
         } else if (index == 2) {
           Get.toNamed(AppRoutes.favorites);
         } else if (index == 3) {
           Get.toNamed(AppRoutes.profile);
-        } else {
-          controller.changePage(index);
         }
       },
       child: AnimatedContainer(
