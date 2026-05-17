@@ -16,30 +16,27 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: FadeTransition(
-          opacity: const AlwaysStoppedAnimation(1.0),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 24),
-                _buildProfileHeader(),
-                const SizedBox(height: 24),
-                _buildEditProfileButton(),
-                const SizedBox(height: 40),
-                _buildAccountSection(),
-                const SizedBox(height: 40),
-                _buildPreferencesSection(),
-                const SizedBox(height: 40),
-                _buildSubscriptionSection(),
-                const SizedBox(height: 40),
-                _buildAboutSection(),
-                const SizedBox(height: 40),
-                _buildDangerZoneSection(),
-                const SizedBox(height: 120),
-              ],
-            ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 24),
+              _buildProfileHeader(),
+              const SizedBox(height: 24),
+              _buildEditProfileButton(),
+              const SizedBox(height: 40),
+              _buildAccountSection(),
+              const SizedBox(height: 40),
+              _buildPreferencesSection(),
+              const SizedBox(height: 40),
+              _buildSubscriptionSection(),
+              const SizedBox(height: 40),
+              _buildAboutSection(),
+              const SizedBox(height: 40),
+              _buildDangerZoneSection(),
+              const SizedBox(height: 120),
+            ],
           ),
         ),
       ),

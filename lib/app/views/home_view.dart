@@ -17,27 +17,24 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: FadeTransition(
-          opacity: const AlwaysStoppedAnimation(1.0),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(),
-                const SizedBox(height: 24),
-                _buildGreeting(),
-                const SizedBox(height: 24),
-                const VinInputCard(),
-                const SizedBox(height: 24),
-                _buildRecentSearches(),
-                const SizedBox(height: 24),
-                _buildFeatureCards(),
-                const SizedBox(height: 24),
-                _buildWatermark(),
-                const SizedBox(height: 100),
-              ],
-            ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildHeader(),
+              const SizedBox(height: 24),
+              _buildGreeting(),
+              const SizedBox(height: 24),
+              const VinInputCard(),
+              const SizedBox(height: 24),
+              _buildRecentSearches(),
+              const SizedBox(height: 24),
+              _buildFeatureCards(),
+              const SizedBox(height: 24),
+              _buildWatermark(),
+              const SizedBox(height: 100),
+            ],
           ),
         ),
       ),

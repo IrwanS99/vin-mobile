@@ -15,22 +15,19 @@ class FavoritesView extends GetView<FavoritesController> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: FadeTransition(
-          opacity: const AlwaysStoppedAnimation(1.0),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 24),
-                _buildHeader(),
-                const SizedBox(height: 24),
-                _buildSummaryCard(),
-                const SizedBox(height: 24),
-                _buildFavoritesList(),
-                const SizedBox(height: 120),
-              ],
-            ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 24),
+              _buildHeader(),
+              const SizedBox(height: 24),
+              _buildSummaryCard(),
+              const SizedBox(height: 24),
+              _buildFavoritesList(),
+              const SizedBox(height: 120),
+            ],
           ),
         ),
       ),
