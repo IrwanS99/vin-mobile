@@ -47,21 +47,14 @@ class HomeView extends GetView<HomeController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            color: AppColors.royalBlue,
-            borderRadius: BorderRadius.circular(16),
+        const Image(
+            image: AssetImage('assets/playstore.png'),
+            width: 56,
+            height: 56,
+            fit: BoxFit.contain,
           ),
-          child: const Icon(
-            FontAwesomeIcons.carSide,
-            color: Colors.white,
-            size: 28,
-          ),
-        ),
         Text(
-          'VinDecode',
+          'Global Vin',
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
