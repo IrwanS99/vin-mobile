@@ -209,10 +209,11 @@ class DetailView extends GetView<DetailController> {
     final data = controller.vehicleData.value;
     final title = data?['title'] ?? 'Unknown Vehicle';
     final year = data?['year'] ?? '';
+    final imagePath = data?['image'] as String?;
 
     final displayTitle = year.isNotEmpty ? '$year $title' : title;
 
-    return VehicleInfoCard(title: displayTitle);
+    return VehicleInfoCard(title: displayTitle, imagePath: imagePath);
   }
 
   Widget _buildSpecsGrid() {

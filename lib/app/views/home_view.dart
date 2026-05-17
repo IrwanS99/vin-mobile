@@ -33,6 +33,8 @@ class HomeView extends GetView<HomeController> {
                 _buildRecentSearches(),
                 const SizedBox(height: 24),
                 _buildFeatureCards(),
+                const SizedBox(height: 24),
+                _buildWatermark(),
                 const SizedBox(height: 100),
               ],
             ),
@@ -179,6 +181,40 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildWatermark() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.orange.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: Colors.orange.withValues(alpha: 0.3),
+          width: 1,
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            FontAwesomeIcons.triangleExclamation,
+            color: Colors.orange[700],
+            size: 16,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            'Pengembangan - Not for production',
+            style: GoogleFonts.poppins(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.orange[700],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

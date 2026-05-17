@@ -108,6 +108,7 @@ class HistoryView extends GetView<HistoryController> {
             vin: item['vin'] as String,
             year: item['year'] as String,
             time: item['time'] as String,
+            imagePath: item['image'] as String?,
             onTap: () => controller.onTapHistoryItem(index),
           );
         },

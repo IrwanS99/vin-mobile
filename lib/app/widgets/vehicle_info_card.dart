@@ -5,10 +5,12 @@ import '../theme/app_colors.dart';
 
 class VehicleInfoCard extends StatelessWidget {
   final String title;
+  final String? imagePath;
 
   const VehicleInfoCard({
     super.key,
     required this.title,
+    this.imagePath,
   });
 
   @override
@@ -35,11 +37,19 @@ class VehicleInfoCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              FontAwesomeIcons.carSide,
-              size: 72,
-              color: AppColors.royalBlue,
-            ),
+            if (imagePath != null && imagePath!.isNotEmpty)
+              Image(
+                image: AssetImage(imagePath!),
+                width: 180,
+                height: 130,
+                fit: BoxFit.contain,
+              )
+            else
+              const Icon(
+                FontAwesomeIcons.carSide,
+                size: 72,
+                color: AppColors.royalBlue,
+              ),
             const SizedBox(height: 16),
             Text(
               title,

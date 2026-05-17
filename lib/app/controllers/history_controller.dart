@@ -13,21 +13,21 @@ class HistoryController extends GetxController {
       'vin': 'WBA3A5G59DNP26082',
       'year': '2013',
       'time': '18m ago',
-      'icon': 'car',
+      'image': 'assets/bmw.png',
     },
     {
       'title': 'Toyota Corolla',
       'vin': '2T1BURHE0JC043821',
       'year': '2018',
       'time': '3d ago',
-      'icon': 'car',
+      'image': 'assets/corolla.png',
     },
     {
       'title': 'Honda Civic Sedan',
       'vin': '1HGBH41JXMN109186',
       'year': '2021',
       'time': '3d ago',
-      'icon': 'car',
+      'image': 'assets/civic.png',
     },
   ].obs;
 
@@ -61,6 +61,7 @@ class HistoryController extends GetxController {
         'year': item['year'],
         'country': 'United States',
         'vehicleType': 'Passenger Car',
+        'image': item['image'],
       },
     );
   }

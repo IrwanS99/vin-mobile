@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
+import '../routes/app_routes.dart';
 
 class HomeController extends GetxController {
   final vinController = TextEditingController();
@@ -23,6 +23,33 @@ class HomeController extends GetxController {
     },
   ].obs;
 
+  final carDataList = [
+    {
+      'title': 'BMW 3 Series',
+      'vin': 'WBA3A5G59DNP26082',
+      'year': '2013',
+      'country': 'United States',
+      'vehicleType': 'Passenger Car',
+      'image': 'assets/bmw.png',
+    },
+    {
+      'title': 'Toyota Corolla',
+      'vin': '2T1BURHE0JC043821',
+      'year': '2018',
+      'country': 'United States',
+      'vehicleType': 'Passenger Car',
+      'image': 'assets/corolla.png',
+    },
+    {
+      'title': 'Honda Civic Sedan',
+      'vin': '1HGBH41JXMN109186',
+      'year': '2021',
+      'country': 'United States',
+      'vehicleType': 'Passenger Car',
+      'image': 'assets/civic.png',
+    },
+  ];
+
   @override
   void onInit() {
     super.onInit();
@@ -41,12 +68,12 @@ class HomeController extends GetxController {
     isButtonPressed.value = true;
     Future.delayed(const Duration(milliseconds: 150), () {
       isButtonPressed.value = false;
-      Get.snackbar(
-        'VIN Decoded',
-        'Processing: ${vinController.text}',
-        backgroundColor: AppColors.royalBlue,
-        colorText: Colors.white,
-        snackPosition: SnackPosition.TOP,
+
+      final randomCar = carDataList[DateTime.now().millisecond % 3];
+
+      Get.toNamed(
+        AppRoutes.detail,
+        arguments: randomCar,
       );
     });
   }

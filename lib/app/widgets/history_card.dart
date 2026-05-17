@@ -8,6 +8,7 @@ class HistoryCard extends StatelessWidget {
   final String vin;
   final String year;
   final String time;
+  final String? imagePath;
   final VoidCallback onTap;
 
   const HistoryCard({
@@ -16,6 +17,7 @@ class HistoryCard extends StatelessWidget {
     required this.vin,
     required this.year,
     required this.time,
+    this.imagePath,
     required this.onTap,
   });
 
@@ -53,6 +55,19 @@ class HistoryCard extends StatelessWidget {
   }
 
   Widget _buildIcon() {
+    if (imagePath != null && imagePath!.isNotEmpty) {
+      return Container(
+        width: 58,
+        height: 58,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Image(
+          image: AssetImage(imagePath!),
+          fit: BoxFit.cover,
+        ),
+      );
+    }
     return Container(
       width: 58,
       height: 58,
