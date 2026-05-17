@@ -142,6 +142,7 @@ class FavoritesView extends GetView<FavoritesController> {
               year: vehicle['year'] as String,
               country: vehicle['country'] as String,
               type: vehicle['type'] as String,
+              imagePath: vehicle['image'] as String?,
               onTap: () => controller.onVehicleTap(vehicle['id'] as String),
               onFavoriteTap: () =>
                   controller.removeFavorite(vehicle['id'] as String),

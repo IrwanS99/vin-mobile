@@ -15,6 +15,7 @@ class FavoritesController extends GetxController {
         'year': '2013',
         'country': 'Germany',
         'type': 'Passenger Car',
+        'image': 'assets/bmw.png',
       },
       {
         'id': '2',
@@ -23,6 +24,7 @@ class FavoritesController extends GetxController {
         'year': '2021',
         'country': 'United States',
         'type': 'Passenger Car',
+        'image': 'assets/civic.png',
       },
       {
         'id': '3',
@@ -31,6 +33,7 @@ class FavoritesController extends GetxController {
         'year': '2018',
         'country': 'Japan',
         'type': 'Passenger Car',
+        'image': 'assets/corolla.png',
       },
     ];
   }
@@ -45,7 +48,18 @@ class FavoritesController extends GetxController {
   }
 
   void onVehicleTap(String id) {
-    Get.toNamed(AppRoutes.detail);
+    final vehicle = favorites.firstWhere((v) => v['id'] == id);
+    Get.toNamed(
+      AppRoutes.detail,
+      arguments: {
+        'title': vehicle['name'],
+        'vin': vehicle['vin'],
+        'year': vehicle['year'],
+        'country': vehicle['country'],
+        'vehicleType': vehicle['type'],
+        'image': vehicle['image'],
+      },
+    );
   }
 
   void onDecodeVin() {

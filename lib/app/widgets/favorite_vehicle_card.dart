@@ -9,6 +9,7 @@ class FavoriteVehicleCard extends StatelessWidget {
   final String year;
   final String country;
   final String type;
+  final String? imagePath;
   final VoidCallback onTap;
   final VoidCallback onFavoriteTap;
 
@@ -19,6 +20,7 @@ class FavoriteVehicleCard extends StatelessWidget {
     required this.year,
     required this.country,
     required this.type,
+    this.imagePath,
     required this.onTap,
     required this.onFavoriteTap,
   });
@@ -47,19 +49,7 @@ class FavoriteVehicleCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 54,
-              height: 54,
-              decoration: BoxDecoration(
-                color: AppColors.softBlue.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: const Icon(
-                FontAwesomeIcons.carSide,
-                size: 22,
-                color: AppColors.royalBlue,
-              ),
-            ),
+            _buildVehicleImage(),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -141,6 +131,33 @@ class FavoriteVehicleCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildVehicleImage() {
+    if (imagePath != null && imagePath!.isNotEmpty) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(14),
+        child: Image(
+          image: AssetImage(imagePath!),
+          width: 54,
+          height: 54,
+          fit: BoxFit.contain,
+        ),
+      );
+    }
+    return Container(
+      width: 54,
+      height: 54,
+      decoration: BoxDecoration(
+        color: AppColors.softBlue.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: const Icon(
+        FontAwesomeIcons.carSide,
+        size: 22,
+        color: AppColors.royalBlue,
       ),
     );
   }

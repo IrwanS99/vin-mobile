@@ -56,15 +56,13 @@ class HistoryCard extends StatelessWidget {
 
   Widget _buildIcon() {
     if (imagePath != null && imagePath!.isNotEmpty) {
-      return Container(
-        width: 58,
-        height: 58,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-        ),
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(16),
         child: Image(
           image: AssetImage(imagePath!),
-          fit: BoxFit.cover,
+          width: 58,
+          height: 58,
+          fit: BoxFit.contain,
         ),
       );
     }
